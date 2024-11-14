@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import '../css/WritePost.css';
 
 function WritePost() {
     const [title, setTitle] = useState('');
@@ -19,21 +20,19 @@ function WritePost() {
         };
         fetch("https://localhost:8080/boards/", {
             method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(newPost)
         }).catch((e) => console.log(e));
     }
 
     return (
-        <div>
-            <h2>글쓰기 페이지</h2>
-            <form>
-            <input type="text" placeholder="제목을 입력하세요" value={title} onChange={handleTitle} /><br />
-            <input type="text" placeholder="작성자를 입력하세요" value={writer} onChange={handleWriter} /><br />
-            <textarea placeholder="내용을 입력하세요" value={content} onChange={handleContent} /><br />
-            <button type="submit" onClick={handleSubmit} >글쓰기</button>
+        <div className="write-container">
+            <h2 className="write-title">글쓰기 페이지</h2>
+            <form className="write-form">
+                <input type="text" placeholder="제목을 입력하세요" value={title} onChange={handleTitle} /><br />
+                <input type="text" placeholder="작성자를 입력하세요" value={writer} onChange={handleWriter} /><br />
+                <textarea placeholder="내용을 입력하세요" value={content} onChange={handleContent} /><br />
+                <button type="submit" className="write-button" onClick={handleSubmit}>글쓰기</button>
             </form>
         </div>
     )
